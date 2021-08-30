@@ -136,11 +136,6 @@ export default {
       let parse = JSON.parse(localStorage.getItem("finalPrice"));
       this.finalPrice = parse;
       this.cartFilled = false;
-      this.quantityDiscountSmart = 0;
-      this.quantityDiscountMotion = 0;
-      this.quantityDiscountCamera = 0;
-      this.quantityDiscountSmoke = 0;
-      this.quantityDiscountWater = 0;
 
       this.quantityDiscountSmoStr = '';
       this.quantityDiscountMotStr = '';
