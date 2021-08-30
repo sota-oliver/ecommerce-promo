@@ -184,42 +184,6 @@ export default {
         }
       }
     }
-    // if(localStorage.getItem("appliedPromo") !==  null){
-    //   if(this.checkoutCart !== null){
-    //     const _promoCodeFirst = 20;
-    //     const _promoCodeSecond = 0.2;
-    //     const _promoCodeThird = 0.05;
-
-    //     this.promoFirst = JSON.parse(localStorage.getItem("appliedPromo20"));
-    //     this.promoSecond = JSON.parse(localStorage.getItem("appliedPromo02"));
-    //     this.promoThird = JSON.parse(localStorage.getItem("appliedPromo005"));
-
-        
-    //   appliedPromo.length = 2;
-
-    //     if(this.promoSecond === _promoCodeSecond && this.promoThird === _promoCodeThird){
-    //       this.finalPrice
-    //     }
-    //     if(this.promoFirst === _promoCodeFirst){
-    //       this.finalPrice -= this.promoFirst;
-    //     }
-    //     switch(this.promoStr){
-    //       case 20:{
-    //         this.finalPrice -= this.promoStr;
-    //       }break;
-    //       case 0.2:{
-    //         let salePrice = this.finalPrice - (this.finalPrice * this.promoStr);
-    //         this.finalPrice = salePrice;
-    //       }break;
-    //       case 0.05:{
-    //         let salePrice = this.finalPrice - (this.finalPrice * this.promoStr);
-    //       this.finalPrice = salePrice;
-    //       }break;
-    //     }
-    //     let parse = this.finalPrice;
-    //     this.finalPrice = parse.toFixed(2);
-    //   }
-    // }
     if(this.checkoutCart !== null){
       var obj = {};
       for ( var j=0, len=this.checkoutCart.length; j < len; j++ ){
@@ -312,28 +276,6 @@ export default {
         }
       }
       this.$router.go({path: 'cart/'});
-      // switch(promoCode){
-      //   case _promoCodeFirstStr :{
-      //     this.finalPrice -=  _promoCodeFirst;
-      //     appliedPromo = _promoCodeFirst;
-
-      //     localStorage.setItem("appliedPromo20", appliedPromo);
-      //   } break;
-
-      //   case _promoCodeSecondStr :{
-      //     let salePrice = this.finalPrice - (this.finalPrice * _promoCodeSecond);
-      //     this.finalPrice = salePrice;
-      //     appliedPromo = _promoCodeSecond;
-      //     localStorage.setItem("appliedPromo02", appliedPromo);
-      //   } break;
-
-      //   case _promoCodeThirdStr :{
-      //     let salePrice = this.finalPrice - (this.finalPrice * _promoCodeThird);
-      //     this.finalPrice = salePrice;
-      //     appliedPromo = _promoCodeThird;
-      //     localStorage.setItem("appliedPromo005", appliedPromo);
-      //   } break;
-      // }
     },
     /**
      * Removes the currently applied promotion from cart
