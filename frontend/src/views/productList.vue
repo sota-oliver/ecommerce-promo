@@ -30,7 +30,13 @@ export default {
     Footer
   },
   async mounted(){
+    this.promoFirst = 0;
+    this.promoSecond = 0;
+    this.promoThird = 0;
     this.itemCards = await Items.getItems();
+    if(this.checkoutCart === null){
+      this.checkoutCart = [];
+    }
   },
   methods:{
     goToCart(){

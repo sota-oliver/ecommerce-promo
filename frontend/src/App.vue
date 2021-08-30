@@ -267,6 +267,9 @@ li{
   text-align: center;
   padding-top: 50px!important;
 }
+.promo-coupon{
+  margin: 10px 0;
+}
 .progress-bar{
   background-color:var(--green);
 }

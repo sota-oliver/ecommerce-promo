@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-7 col-lg-8">
           <h4 class="mb-3">Billing address</h4>
-          <form>
+          <form @submit="pay()">
             <div class="row g-3">
 
               <div class="col-12">
@@ -74,16 +74,22 @@
 
             <div class="my-3">
               <div class="form-check">
-                <input id="credit" type="radio" class="form-check-input" checked="" required="">
-                <label class="form-check-label" for="credit">Credit card</label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Credit card
+                </label>
               </div>
               <div class="form-check">
-                <input id="debit" type="radio" class="form-check-input" required="">
-                <label class="form-check-label" for="debit">Debit card</label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Debit card
+                </label>
               </div>
               <div class="form-check">
-                <input id="paypal" type="radio" class="form-check-input" required="">
-                <label class="form-check-label" for="paypal">PayPal</label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  PayPal
+                </label>
               </div>
             </div>
 
@@ -124,7 +130,7 @@
 
             <hr class="my-4">
 
-            <button @click="pay()" type="submit" class="w-100 btn btn-primary btn-lg">Continue to checkout</button>
+            <button type="submit" class="w-100 btn btn-primary btn-lg">Continue to checkout</button>
           </form>
         </div>
       </div>

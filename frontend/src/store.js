@@ -16,7 +16,10 @@ export default{
     
     finalPrice: 0,
     promoCode: '',
-    promoStr:'',
+    promoArr: [],
+    promoFirst:'',
+    promoSecond:'',
+    promoThird:'',
     address: '',
     email: '',
 

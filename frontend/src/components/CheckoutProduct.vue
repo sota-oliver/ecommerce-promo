@@ -43,7 +43,7 @@ export default {
             let cartObjects = JSON.parse(localStorage.getItem("cart"));
             for(let i = 0; i < cartObjects.length; i++){
                 if(cartObjects[i].item_id === index){
-                    if(this.finalPrice != 0){
+                    if(this.finalPrice >= 0){
                         check = i;
                     }
                 }

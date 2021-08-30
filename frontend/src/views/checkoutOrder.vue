@@ -15,7 +15,10 @@
         <hr class="my-4">
         <div class="row" style="padding: 10px;">
           <div class="col-6">
-              <label class="font-weight-bold">Discount:</label>
+            <label class="font-weight-bold">Discount: -</label>
+              <label v-if="this.promoFirst" class="font-weight-bold">{{this.promoFirst + " €"}}</label>
+              <label v-if="this.promoSecond" class="font-weight-bold">{{this.promoSecond*100 + " %"}}</label>
+              <label v-if="this.promoThird" class="font-weight-bold">{{this.promoThird*100 + " %"}}</label>
           </div>
           <div class="col-6 text-right">
               <label class="font-weight-bold">Final price: {{this.finalPrice}} €</label>
@@ -132,6 +135,15 @@ export default {
       }
       let parse = JSON.parse(localStorage.getItem("finalPrice"));
       this.finalPrice = parse;
+      this.cartFilled = false;
+      this.quantityDiscountSmart = 0;
+      this.quantityDiscountMotion = 0;
+      this.quantityDiscountCamera = 0;
+      this.quantityDiscountSmoke = 0;
+      this.quantityDiscountWater = 0;
+
+      this.quantityDiscountSmoStr = '';
+      this.quantityDiscountMotStr = '';
       localStorage.clear();
     }
   }

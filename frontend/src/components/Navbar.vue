@@ -41,6 +41,8 @@ export default {
     this.checkoutCart = parsedArr;
     if(this.checkoutCart !== null){
         this.cartFilled = ((this.checkoutCart.length !==0) ? true : false);
+    }else {
+      this.cartFilled = false;
     }
   },
   methods:{

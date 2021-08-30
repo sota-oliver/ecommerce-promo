@@ -9,7 +9,7 @@
           </li>
         </div>
       </ul>
-      <div v-if="this.checkoutCart === null" class="text-center cart-empty">
+      <div v-if="this.checkoutCart.length === 0" class="text-center cart-empty">
         <img src="@/assets/emptycart.png" class="cart-empty-photo">
       </div>
       
@@ -32,19 +32,19 @@
             <label class="mr-auto">Estimated tax:</label>
             <label>Free</label>
           </div>
-          <div v-if="promoStr" class="text-left" style="margin-bottom:20px;">
+          <div class="text-left" style="margin-bottom:20px;">
             <label class="mr-auto">Coupons discount:</label>
-            <div v-if="promoStr === 20" class="d-flex d-inline-block">
-              <div class="mr-auto promo-applied-20 text-center">{{this.promoStr}}€</div>
-              <button class="promo-remove" @click="removePromo()">Remove</button>
+            <div v-if="promoFirst === 20" class="d-flex d-inline-block promo-coupon">
+              <div class="mr-auto promo-applied-20 text-center">{{this.promoFirst}}€</div>
+              <button class="promo-remove" @click="removePromo(promoFirst)">Remove</button>
             </div>
-            <div v-if="promoStr === 0.2" class="d-flex d-inline-block">
-              <div class="mr-auto promo-applied-02 text-center">{{this.promoStr*100}}%</div>
-              <button class="promo-remove" @click="removePromo()">Remove</button>
+            <div v-if="promoSecond === 0.2" class="d-flex d-inline-block promo-coupon">
+              <div class="mr-auto promo-applied-02 text-center">{{this.promoSecond*100}}%</div>
+              <button class="promo-remove" @click="removePromo(promoSecond)">Remove</button>
             </div>
-            <div v-if="promoStr === 0.05" class="d-flex d-inline-block">
-              <div class="mr-auto promo-applied-005 text-center">{{this.promoStr*100}}%</div>
-              <button class="promo-remove" @click="removePromo()">Remove</button>
+            <div v-if="promoThird === 0.05" class="d-flex d-inline-block promo-coupon">
+              <div class="mr-auto promo-applied-005 text-center">{{this.promoThird*100}}%</div>
+              <button class="promo-remove" @click="removePromo(promoThird)">Remove</button>
             </div>
           </div>
           <div class="d-flex d-inline-block" style="margin-bottom:20px;">
@@ -79,6 +79,8 @@ export default {
   mounted(){
     let str = JSON.parse(localStorage.getItem("cart"));
     this.checkoutCart = str;
+    this.promoArr = JSON.parse(localStorage.getItem("appliedPromo"));
+    console.log(this.promoArr)
 
     const _motionSensorDiscount = 9.97;
     const _smokeSensorDiscount = 4.98;
@@ -88,6 +90,8 @@ export default {
     this.quantityDiscountSmoke = 0;
     this.quantityDiscountWater = 0;
 
+    this.quantityDiscountSmoStr = '';
+    this.quantityDiscountMotStr = '';
     this.finalPrice = 0; 
     
     if(this.checkoutCart !== null){
@@ -128,7 +132,6 @@ export default {
             let parse = parseFloat(Number(this.finalPrice)) - _motionSensorDiscount;
             this.finalPrice = parse.toFixed(2);
             this.quantityDiscountMotStr = `Discount applied. ${this.quantityDiscountMotion}x Motion Sensors`;
-            localStorage.setItem("finalPrice", this.finalPrice);
           }
         }
         if(this.quantityDiscountSmoke != 0 && this.quantityDiscountSmoke >= 2 && this.quantityDiscountSmoStr === ''){
@@ -136,30 +139,87 @@ export default {
             let parse = parseFloat(Number(this.finalPrice)) - _smokeSensorDiscount;
             this.finalPrice = parse.toFixed(2);
             this.quantityDiscountSmoStr = `Discount applied. ${this.quantityDiscountSmoke}x Smoke Sensors`;
-            localStorage.setItem("finalPrice", this.finalPrice);
+            
           }
         }
-
+        localStorage.setItem("finalPrice", this.finalPrice);
         let parseArr = JSON.parse(localStorage.getItem("cart"));
         this.checkoutCart = parseArr;
         
         let parse = parseFloat(Number(this.finalPrice));
         this.finalPrice = parse.toFixed(2);
       }
+    }else{
+      this.checkoutCart = [];
     }
-    if(localStorage.getItem("appliedPromo") !==  null){
-        this.promoStr = JSON.parse(localStorage.getItem("appliedPromo"));
-        this.finalPrice -= this.promoStr;
-        let parse = this.finalPrice;
-        this.finalPrice = parse.toFixed(2);
-    }
-    if(this.checkoutCart !== null){
-      if(this.finalPrice < 0) {
-        if(this.checkoutCart.length > 0){
-        this.finalPrice = 0; 
+    if(localStorage.getItem("appliedPromo") !== null){
+      if(this.checkoutCart !== null){
+        const _promoCodeFirst = 20;
+        const _promoCodeSecond = 0.2;
+        const _promoCodeThird = 0.05;
+
+        for(let i = 0; i < this.promoArr.length; i++){
+          switch(this.promoArr[i]){
+            case _promoCodeFirst:{
+              this.promoFirst = _promoCodeFirst;
+              this.finalPrice -= this.promoFirst;
+              let parse = this.finalPrice;
+              this.finalPrice = parse.toFixed(2);
+            }break;
+            case _promoCodeSecond:{
+              this.promoSecond = _promoCodeSecond;
+              let salePrice = this.finalPrice - (this.finalPrice * this.promoSecond);
+              this.finalPrice = salePrice;
+              let parse = this.finalPrice;
+              this.finalPrice = parse.toFixed(2);
+            }break;
+            case _promoCodeThird:{
+              this.promoThird = _promoCodeThird;
+              let salePrice = this.finalPrice - (this.finalPrice * this.promoThird);
+              this.finalPrice = salePrice;
+              let parse = this.finalPrice;
+              this.finalPrice = parse.toFixed(2);
+            }break;
+          }
         }
       }
     }
+    // if(localStorage.getItem("appliedPromo") !==  null){
+    //   if(this.checkoutCart !== null){
+    //     const _promoCodeFirst = 20;
+    //     const _promoCodeSecond = 0.2;
+    //     const _promoCodeThird = 0.05;
+
+    //     this.promoFirst = JSON.parse(localStorage.getItem("appliedPromo20"));
+    //     this.promoSecond = JSON.parse(localStorage.getItem("appliedPromo02"));
+    //     this.promoThird = JSON.parse(localStorage.getItem("appliedPromo005"));
+
+        
+    //   appliedPromo.length = 2;
+
+    //     if(this.promoSecond === _promoCodeSecond && this.promoThird === _promoCodeThird){
+    //       this.finalPrice
+    //     }
+    //     if(this.promoFirst === _promoCodeFirst){
+    //       this.finalPrice -= this.promoFirst;
+    //     }
+    //     switch(this.promoStr){
+    //       case 20:{
+    //         this.finalPrice -= this.promoStr;
+    //       }break;
+    //       case 0.2:{
+    //         let salePrice = this.finalPrice - (this.finalPrice * this.promoStr);
+    //         this.finalPrice = salePrice;
+    //       }break;
+    //       case 0.05:{
+    //         let salePrice = this.finalPrice - (this.finalPrice * this.promoStr);
+    //       this.finalPrice = salePrice;
+    //       }break;
+    //     }
+    //     let parse = this.finalPrice;
+    //     this.finalPrice = parse.toFixed(2);
+    //   }
+    // }
     if(this.checkoutCart !== null){
       var obj = {};
       for ( var j=0, len=this.checkoutCart.length; j < len; j++ ){
@@ -171,7 +231,10 @@ export default {
           this.checkoutCart.push(obj[key]);
       }
     }
-    localStorage.setItem("finalPrice", this.finalPrice)
+    localStorage.setItem("finalPrice", this.finalPrice);
+    if(this.finalPrice < 0){
+      this.finalPrice = 0;
+    }
   },
   methods:{
     checkDuplicateInObject(propertyName, inputArray) {
@@ -206,39 +269,86 @@ export default {
       const _promoCodeSecondStr = "20%OFF";
       const _promoCodeThirdStr = "5%OFF";
 
-      let appliedPromo;
+      this.promoArr = JSON.parse(localStorage.getItem("appliedPromo"));
 
-      switch(promoCode){
-        case _promoCodeFirstStr :{
-          this.finalPrice -=  _promoCodeFirst;
-          appliedPromo = _promoCodeFirst;
-        } break;
-
-        case _promoCodeSecondStr :{
-          let salePrice = this.finalPrice - (this.finalPrice * _promoCodeSecond);
-          this.finalPrice = salePrice;
-          appliedPromo = _promoCodeSecond;
-        } break;
-
-        case _promoCodeThirdStr :{
-          let salePrice = this.finalPrice - (this.finalPrice * _promoCodeThird);
-          this.finalPrice = salePrice;
-          appliedPromo = _promoCodeThird;
-        } break;
+      if(this.promoArr === null){
+        this.promoArr = [];
       }
       
-      let parse = parseFloat(Number(this.finalPrice));
-      this.finalPrice = parse.toFixed(2);
-      localStorage.setItem("appliedPromo", appliedPromo);
-      localStorage.setItem("finalPrice", this.finalPrice);
-
+      if(this.promoArr.length < 2){
+        if(this.promoArr.length > 0){
+          if(this.promoArr[0] !== _promoCodeFirst){
+            switch(promoCode){
+              case _promoCodeSecondStr:{
+                if(this.promoArr[0] !== _promoCodeSecond){
+                  this.promoArr.push(_promoCodeSecond);
+                  localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+                }
+              }break;
+              case _promoCodeThirdStr:{
+                if(this.promoArr[0] !== _promoCodeThird){
+                  this.promoArr.push(_promoCodeThird);
+                  localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+                }
+              }break;
+            }
+          }
+        }
+        if(this.promoArr.length < 1){
+          switch(promoCode){
+            case _promoCodeFirstStr:{
+              this.promoArr.push(_promoCodeFirst);
+              localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+            }break;
+            case _promoCodeSecondStr:{
+              this.promoArr.push(_promoCodeSecond);
+              localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+            }break;
+            case _promoCodeThirdStr:{
+              this.promoArr.push(_promoCodeThird);
+              localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+            }break;
+          }
+        }
+      }
       this.$router.go({path: 'cart/'});
+      // switch(promoCode){
+      //   case _promoCodeFirstStr :{
+      //     this.finalPrice -=  _promoCodeFirst;
+      //     appliedPromo = _promoCodeFirst;
+
+      //     localStorage.setItem("appliedPromo20", appliedPromo);
+      //   } break;
+
+      //   case _promoCodeSecondStr :{
+      //     let salePrice = this.finalPrice - (this.finalPrice * _promoCodeSecond);
+      //     this.finalPrice = salePrice;
+      //     appliedPromo = _promoCodeSecond;
+      //     localStorage.setItem("appliedPromo02", appliedPromo);
+      //   } break;
+
+      //   case _promoCodeThirdStr :{
+      //     let salePrice = this.finalPrice - (this.finalPrice * _promoCodeThird);
+      //     this.finalPrice = salePrice;
+      //     appliedPromo = _promoCodeThird;
+      //     localStorage.setItem("appliedPromo005", appliedPromo);
+      //   } break;
+      // }
     },
     /**
      * Removes the currently applied promotion from cart
      */
-    removePromo(){
-      localStorage.removeItem("appliedPromo");
+    removePromo(promo){
+      if(this.promoArr[0] === promo){
+        this.promoArr.splice(0, 1);
+        localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+        console.log(this.promoArr)
+      }
+      if(this.promoArr[1] === promo){
+        this.promoArr.splice(1, 1);
+        localStorage.setItem("appliedPromo", JSON.stringify(this.promoArr));
+        console.log(this.promoArr)
+      }
       this.$router.go({path: 'cart/'});
     },
     proceedToCheckout(){
@@ -246,7 +356,7 @@ export default {
     },
     back(){
       this.$router.push({path: '/'});
-    }
+    },
   }
 }
 </script>
