@@ -1,0 +1,34 @@
+{
+    "items":[
+        {
+            "item_id": 0,
+            "item_name": "Smart Hub",
+            "item_price": 49.99,
+            "item_image": "https://s3-alpha-sig.figma.com/img/5e17/433a/af171054cc16e036afe1f92b77ac912a?Expires=1630886400&Signature=XmfrZV5iEcO~wHSNmNp8IrJgjU4xz~Ar8Erzh55JfIR9GKNTNJHzGPnp9ts1zAaiUh3rG6qApA8Xhbt9gFEoAMbx~R51Hz~Fdr-IkoCcL0MMFFLQaR6N6CX2sMvJAFxNAA~ntnLSWR0FM7Ce9-pPu5R2EcNqbTUnm5TguXgTbd8WKgPAQJXPN~wPsfy0RQowFh6acTjBQKrlRQ4UODkEao28VNrywj1E753~TpPzfY1WEuGRbdnczqtnXV15Vb1GggTrp-5l3FcZVjbxkEurAa4aVVSIXihMnpm0MVLs-GYW5ZmjyytSA0ZZ4a5dEGWbhndCE0twfDQaZ9G8pZGV2Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        },
+        {
+            "item_id": 1,
+            "item_name": "Motion Sensor",
+            "item_price": 24.99,
+            "item_image": "https://s3-alpha-sig.figma.com/img/894e/e385/d4762d48851ba279c38d9235ee312542?Expires=1630886400&Signature=Vv4b~Gd7GvkRso~7Dkx5OEp~OMiaqRz1qJMq-jq2nSYnPJCchYuCDLqy3exmN~k7g7UsRyAtivRhuEewsV9kBPuMY4qJ3sahQdw2Sqi5feuBatuH8VOHJVxC2weqS9xIfchcrdCnzep3xT81Lh7kkp-rOpnQ9nztc0spq11574ZLC5On79Mkbu2VQ8kWVbZBdzOYv~WAeu~q2jbV8DyDY9waheIviHks6FPPk9n8ESKosakVwqs3su3K0GWWsn7-8Us0SA3sXf-Le-RBtLWiREQxAktboJe81U8xwTql7QvYZpmxqf7EDSKkyCQ-uhaEd4PbG1ILK~GrJ73nznbZzw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        },
+        {
+            "item_id": 2,
+            "item_name": "Wireless Camera",
+            "item_price": 99.99,
+            "item_image": "https://s3-alpha-sig.figma.com/img/4127/82b4/ff3b48a3b6813046e7bf0a18920a008c?Expires=1630886400&Signature=BV2mzzEdX9~eKHhYtMt86j7OyBtES3ZyqN-2l1GSGiRsgVWn3EZg4Q11QlgzvZMFCJI1jZnemZSo3PJryGJzepdWG3SvMTQ~3PxkCcp8MUYr1kp9N~m2MWKn2DUS1HSwQ0WQKcTCwGl1ZzVHfTBrgnXarLePuXc298x5Xu0AuKmHfomBifk-kcm9Cnhm3dNxe-jl~bcSjcFBmCcWhth1WueZwRU-UWXoc0~6Cizd2f8Pa8EedkWna3vsNPATjvzinHm04Zr-05sy8jkE7c4CXbjZtUQzqhhrioQidua7VThsUHtsVcqf3Mk7ul-lbvztJWO8y2nod6~N9tLYieVPQA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        },
+        {
+            "item_id": 3,
+            "item_name": "Smoke Sensor",
+            "item_price": 19.99,
+            "item_image": "https://s3-alpha-sig.figma.com/img/1b56/0dbf/6ed18c21f853a1c2b15be0540ee4ae38?Expires=1630886400&Signature=Q29czSO5Gb9B5dg8gUKeZRwd5QF5w-IdzIEyCPfKkmJyLyuS9~F26LxKz1ZNzDR2fuhHECrC4BF~6GWIaFkyHm7-r-~s8NGDjXOjBUgkyz8ES8KDJshY9US4qL3F0mHhgjkZwRn~QkS5j4R7x-pn9yvMThKF7MIXGFAwaIaMMq2fA6p4FKUoDUNPLUeEc6~rduFvzbaXWvATC7edD~E98kq8zTRAB5RMA47Qt9LOaYEAkBbSJ1Z-m-SyHBOqd3V20FxW0ZnQJcRS3w7LDEih2lcdjrgtBRaKDiXsB~teqhsuC2jswqcmSHUGyCdPyl7i1so5FsLOrBrFa7XOIQczmA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        },
+        {
+            "item_id": 4,
+            "item_name": "Water Leak Sensor",
+            "item_price": 14.99,
+            "item_image": "https://s3-alpha-sig.figma.com/img/473e/d96c/64242fc4075c63164d38ad7d14b46aad?Expires=1630886400&Signature=c2FVy88dEQrSwJ3tU8OHUFuV5LwLQWRTdq1aYKFh-zXTOQoiUz4bBM~e~9ou7FhfOuN7ydm0dXkh~9jeCsLOUgUWnRoGAfg0eh8jsVnzxqIuEdCxg3WkrU9iH3Gu09aUnnkjP8j~H9xOQs5UMzYACbftCFWn9pgvM13K9W2qCfSIHV3JVv0x-zhlZJhERceDf7qt9znURPVo45XNN2JL165gAVfsAxfgzsgHyZCbv4hrzc81zLs7SDMHECiNSg8PVjLHi1BqHrpWy0OxI-k0WiWynv2hNFFO9vv-YEeLLWEN-HBeUQEudS6NGTdayJeB4q-mY8HkgzJvL4Rq9WF4TQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+        }
+    ]
+}
